@@ -30,7 +30,7 @@ var template = React.createElement(
   { style: { textAlign: "center" } },
   React.createElement(
     "h1",
-    null,
+    { style: { backgroundColor: "grey" } },
     app.title
   ),
   React.createElement(
@@ -41,7 +41,7 @@ var template = React.createElement(
   React.createElement(
     "p",
     null,
-    app.options.length > 0 ? "Here are your options" : "no options"
+    app.options.length > 0 ? 'Here are your options: "' + app.options + '"' : "no options"
   )
 );
 

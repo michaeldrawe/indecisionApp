@@ -21,9 +21,13 @@ function getSubtitle(subtitle) {
 //JSX - JavaScript XML
 var template = (
   <div style={{ textAlign: "center" }}>
-    <h1>{app.title}</h1>
+    <h1 style={{ backgroundColor: "grey" }}>{app.title}</h1>
     <p>{app.subtitle ? app.subtitle : "No Subtitle"}</p>
-    <p>{app.options.length > 0 ? "Here are your options" : "no options"}</p>
+    <p>
+      {app.options.length > 0
+        ? 'Here are your options: "' + app.options + '"'
+        : "no options"}
+    </p>
   </div>
 );
 
