@@ -1,0 +1,7 @@
+//starts live server
+live-server public
+
+//converts jsx
+babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+
+

@@ -1,56 +1,55 @@
-//Used so we know this file is being used
 console.log("App.js is running!");
 
-// create app object title/subtitle
-//user title/subtitle in the template
-
-// only render the subtitle (and p tag) if subtitle exists
-//render new p tag -- if options.length > 0 "here are your options" "no options"
-
-var app = {
+const app = {
   title: "Indecision App",
-  subtitle: "Making decisions a little easier",
+  subtitle: "Put your life in the hands of a computer",
   options: ["One", "Two"]
 };
-function getSubtitle(subtitle) {
-  if (subtitle) {
-    return <p>{subtitle}</p>;
-  }
-}
-
-//JSX - JavaScript XML
-var template = (
-  <div style={{ textAlign: "center" }}>
-    <h1 style={{ backgroundColor: "grey" }}>{app.title}</h1>
-    <p>{app.subtitle ? app.subtitle : "No Subtitle"}</p>
-    <p>
-      {app.options.length > 0
-        ? 'Here are your options: "' + app.options + '"'
-        : "no options"}
-    </p>
+const template = (
+  <div>
+    <h1>{app.title}</h1>
+    {app.subtitle && <p>{app.subtitle}</p>}
+    <p>{app.options.length > 0 ? "Here are your options" : "No options"}</p>
+    <ol>
+      <li>Item one</li>
+      <li>Item two</li>
+      <li>Item Three</li>
+    </ol>
   </div>
 );
 
-var user = {
-  name: "Michael",
-  age: 39,
-  location: ""
+let count = 0;
+
+const addOne = ()=>{
+  count = count +1;
+  renderCounterApp();
+};
+const minusOne = ()=>{
+  if (count > 0) {
+    count = count -1;
+  }
+  renderCounterApp();
+};
+const reset = () => {
+  count = 0;
+  renderCounterApp ();
 };
 
-function getLocation(location) {
-  if (location) {
-    return <p>Location: {location}</p>;
-  }
-}
 
-var templateTwo = (
-  <div>
-    <h1>{user.name ? user.name : "Anonymous"}</h1>
-    {user.age && user.age >= 18 && <p>Age: {user.age}</p>}
-    {getLocation(user.location)}
-  </div>
+
+const appRoot = document.getElementById("app");
+
+const renderCounterApp = () => {
+  const templateTwo = (
+    <fragment>
+      <h1>Count: {count}</h1>
+      <button onClick={addOne}>+1</button>
+      <button onClick={reset}>Reset</button>
+      <button onClick={minusOne}>-1</button>
+    </fragment>
 );
 
-var appRoot = document.getElementById("app");
+ReactDOM.render(templateTwo, appRoot);
+};
 
-ReactDOM.render(template, appRoot);
+renderCounterApp();

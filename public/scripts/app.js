@@ -1,84 +1,98 @@
 "use strict";
 
-//Used so we know this file is being used
 console.log("App.js is running!");
-
-// create app object title/subtitle
-//user title/subtitle in the template
-
-// only render the subtitle (and p tag) if subtitle exists
-//render new p tag -- if options.length > 0 "here are your options" "no options"
 
 var app = {
   title: "Indecision App",
-  subtitle: "Making decisions a little easier",
+  subtitle: "Put your life in the hands of a computer",
   options: ["One", "Two"]
 };
-function getSubtitle(subtitle) {
-  if (subtitle) {
-    return React.createElement(
-      "p",
-      null,
-      subtitle
-    );
-  }
-}
-
-//JSX - JavaScript XML
 var template = React.createElement(
-  "div",
-  { style: { textAlign: "center" } },
-  React.createElement(
-    "h1",
-    { style: { backgroundColor: "grey" } },
-    app.title
-  ),
-  React.createElement(
-    "p",
-    null,
-    app.subtitle ? app.subtitle : "No Subtitle"
-  ),
-  React.createElement(
-    "p",
-    null,
-    app.options.length > 0 ? 'Here are your options: "' + app.options + '"' : "no options"
-  )
-);
-
-var user = {
-  name: "Michael",
-  age: 39,
-  location: ""
-};
-
-function getLocation(location) {
-  if (location) {
-    return React.createElement(
-      "p",
-      null,
-      "Location: ",
-      location
-    );
-  }
-}
-
-var templateTwo = React.createElement(
   "div",
   null,
   React.createElement(
     "h1",
     null,
-    user.name ? user.name : "Anonymous"
+    app.title
   ),
-  user.age && user.age >= 18 && React.createElement(
+  app.subtitle && React.createElement(
     "p",
     null,
-    "Age: ",
-    user.age
+    app.subtitle
   ),
-  getLocation(user.location)
+  React.createElement(
+    "p",
+    null,
+    app.options.length > 0 ? "Here are your options" : "No options"
+  ),
+  React.createElement(
+    "ol",
+    null,
+    React.createElement(
+      "li",
+      null,
+      "Item one"
+    ),
+    React.createElement(
+      "li",
+      null,
+      "Item two"
+    ),
+    React.createElement(
+      "li",
+      null,
+      "Item Three"
+    )
+  )
 );
+
+var count = 0;
+
+var addOne = function addOne() {
+  count = count + 1;
+  renderCounterApp();
+};
+var minusOne = function minusOne() {
+  if (count > 0) {
+    count = count - 1;
+  }
+  renderCounterApp();
+};
+var reset = function reset() {
+  count = 0;
+  renderCounterApp();
+};
 
 var appRoot = document.getElementById("app");
 
-ReactDOM.render(template, appRoot);
+var renderCounterApp = function renderCounterApp() {
+  var templateTwo = React.createElement(
+    "fragment",
+    null,
+    React.createElement(
+      "h1",
+      null,
+      "Count: ",
+      count
+    ),
+    React.createElement(
+      "button",
+      { onClick: addOne },
+      "+1"
+    ),
+    React.createElement(
+      "button",
+      { onClick: reset },
+      "Reset"
+    ),
+    React.createElement(
+      "button",
+      { onClick: minusOne },
+      "-1"
+    )
+  );
+
+  ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();
