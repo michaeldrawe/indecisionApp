@@ -1,8 +1,0 @@
-//starts live server
-live-server public
-
-//converts jsx
-babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
-
-handle form submit on client, push item into array and renders the application
-
